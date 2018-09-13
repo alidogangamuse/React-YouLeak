@@ -1,0 +1,46 @@
+{
+  "_from": "youtube-api-videos",
+  "_inBundle": false,
+  "_integrity": "sha1-ndaG3nYv8lBKkCiMV/zlo3BkMAI=",
+  "_location": "/youtube-api-videos",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "youtube-api-videos",
+    "name": "youtube-api-videos",
+    "escapedName": "youtube-api-videos",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/youtube-api-videos/-/youtube-api-videos-0.0.5.tgz",
+  "_shasum": "9dd686de762ff2504a90288c57fce5a370643002",
+  "_spec": "youtube-api-videos",
+  "_where": "C:\\react\\web\\projects\\ReduxSimpleStarter",
+  "author": {
+    "name": "Ali Doğan"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "axios": "^0.7.0"
+  },
+  "deprecated": false,
+  "description": "Statistic and more details for youtube videos",
+  "keywords": [
+    "youtube",
+    "videos",
+    "api"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "youtube-api-videos",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.5"
+}
