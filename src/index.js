@@ -15,6 +15,7 @@ class App extends Component {
       videos: [],
       selectedVideo: null,
      };
+     //console.log("constructor calisti....")
 
      this.videoSearch('surfboards');
   }
@@ -25,12 +26,17 @@ class App extends Component {
         videos: videos,
         selectedVideo: videos[0],
       });   
-          sessionStorage.setItem('videoId', videos[0].id.videoId);
+      console.log("videoSearch() calisti....")          
     });    
   }
 
   render(){
+    //console.log("render calisti....")
+
     const videoSearch = _.debounce((term) => {this.videoSearch(term)}, 300);
+    if(!this.state.selectedVideo){
+      return(<div>wait..</div>)
+    }
     return (    
       <div >
         <Header onSearchTermChange={videoSearch}/>

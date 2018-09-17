@@ -4,52 +4,48 @@ import YTComment from 'youtube-api-comment';
 import YTVideo from '../my_modules/youtube-api-videos';
 import CommentList from './comment-list';
 const API_KEY = 'AIzaSyCb7pTQTlxNW_5FTgvI-TMyHDq0ENzN0lI';
-var Comments=null;
-var Videos=null;
 
 
 class VideoDetail extends Component{
     constructor(props){
+        console.log("1")
         super(props);
-
         this.state = {
-            comments: null,
-            videos: null,
-            videoID: null
+            id : this.props.video.id.videoId,
+            comments: [],
+            videos: []
         };
-        
-    }       
+        console.log("2")
+        this.calis(this.state.id);        
+    }   
 
-    fetchData(videoIds){
-        YTComment({ key: API_KEY, videoId: videoIds, maxResults: 50 }, (comments)=>{
-            Comments = comments;
-            console.log(Comments);
+    calis(id){
+        console.log("idimiz : " + id)
+        YTComment({ key: API_KEY, videoId:id, maxResults: 50 }, (comments)=>{
+            // console.log("Comment: " + comments);
+            this.setState({
+                comments : comments,                
+            });
+        });  
+        YTVideo({key: API_KEY, videoId:id}, (videos)=>{
+            this.setState({
+                videos: videos,
+            });
         });
-        
-        YTVideo({key: API_KEY, videoId: videoIds}, (videos)=>{
-            Videos = videos;
-            console.log(Videos);
-        });
-    } 
-            
-        
+    }
     
 
     render(){
-
-        if(!this.props.video) {
+        console.log("detay render calisti....")
+        
+        if(!this.props.video) {            
             return (<div>Loading.. <img alt="loader" height="100px" src="./style/images/loader.gif"/></div>);
-        } 
-        
-        const videoIds = sessionStorage.getItem('videoId');
-        const url = `https://www.youtube.com/embed/${videoIds}`;
+        }   
 
-
+        const videoId = this.props.video.id.videoId;
+        console.log("Gelen id: " + videoId);
+        const url = `https://www.youtube.com/embed/${videoId}`;
         
-        
-        if(Videos == null){
-            return(<div onLoad={this.fetchData(videoIds)}>bekleyin..</div>)
-        }
         return(              
             <div className="col-md-8">
             <div className="video-detail">
@@ -72,12 +68,12 @@ class VideoDetail extends Component{
                     </button> 
                     <div className="collapse" id="collapseExample">
                         <div className="card card-body">
-                            <div>{Videos[0].snippet.description}</div>     
+                            <div>{this.state.videos.snippet.description}</div>     
                         </div>
                     </div>
                 </div>
                 </div>
-                <CommentList comments={Comments}/>
+                <CommentList comments={yorum}/>
             </div>            
         );
     }
