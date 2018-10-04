@@ -1,59 +1,26 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import YTComment from 'youtube-api-comment';
-import YTVideo from '../my_modules/youtube-api-videos';
 import CommentList from './comment-list';
-const API_KEY = 'AIzaSyCb7pTQTlxNW_5FTgvI-TMyHDq0ENzN0lI';
-
 
 class VideoDetail extends Component{
-    constructor(props){
-        console.log("1")
-        super(props);
-        this.state = {
-            id : this.props.video.id.videoId,
-            comments: [],
-            videos: []
-        };
-        console.log("2")
-        this.calis(this.state.id);        
-    }   
-
-    calis(id){
-        console.log("idimiz : " + id)
-        YTComment({ key: API_KEY, videoId:id, maxResults: 50 }, (comments)=>{
-            // console.log("Comment: " + comments);
-            this.setState({
-                comments : comments,                
-            });
-        });  
-        YTVideo({key: API_KEY, videoId:id}, (videos)=>{
-            this.setState({
-                videos: videos,
-            });
-        });
-    }
-    
 
     render(){
-        console.log("detay render calisti....")
-        
-        if(!this.props.video) {            
+        const { video , videodetails , comments} = this.props
+        if(!video || !videodetails || !comments) {            
             return (<div>Loading.. <img alt="loader" height="100px" src="./style/images/loader.gif"/></div>);
         }   
 
-        const videoId = this.props.video.id.videoId;
+        const videoId = video.id.videoId;
         console.log("Gelen id: " + videoId);
         const url = `https://www.youtube.com/embed/${videoId}`;
-        
+        console.log("videodetails[0] : ", videodetails)
         return(              
-            <div className="col-md-8">
+            <div className="col-lg-8">
             <div className="video-detail">
                 <div className="embed-responsive embed-responsive-16by9" >
                     <iframe className="embed-responsive-item" allowFullScreen="allowFullScreen" frameBorder="0" src={url}></iframe>
                 </div>
                 <div className="details">
-                    <div className="h3">{this.props.video.snippet.title}</div>  
+                    <div className="h3">{videodetails[0].snippet.title}</div>  
                     <div id="profile-area">
                         <div id="profile-area-photo">
                             <div id="profileImage"></div>                     
@@ -68,12 +35,12 @@ class VideoDetail extends Component{
                     </button> 
                     <div className="collapse" id="collapseExample">
                         <div className="card card-body">
-                            <div>{this.state.videos.snippet.description}</div>     
+                            <div>{videodetails[0].snippet.description}</div>     
                         </div>
                     </div>
                 </div>
                 </div>
-                <CommentList comments={yorum}/>
+                <CommentList comments={comments}/>
             </div>            
         );
     }

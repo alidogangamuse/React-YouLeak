@@ -10,8 +10,8 @@ const CommentListItem = (props) => {
     const commentImageUrl = updateImageSize.replace("s28", "s100");
     const commentOwnerUrl = commentSnippet.authorChannelUrl;
     const commentOwner = commentSnippet.authorDisplayName
-    return (
-        <li className="list-group-item" >
+    return (        
+        <li className="list-group-item">
             <div className="video-list media" >
                 <div className="media-left" >  
                     <a href={commentOwnerUrl} title="Kanalı Görüntüle" >
