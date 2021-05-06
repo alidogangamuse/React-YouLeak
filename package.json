@@ -30,7 +30,7 @@
     "react-redux": "5.0.7",
     "redux": "4.0.0",
     "tough-cookie": "^2.3.3",
-    "url-parse": "^1.4.3",
+    "url-parse": "^1.5.0",
     "youtube-api": "^2.0.9",
     "youtube-api-comment": "^1.0.1",
     "youtube-api-search": "0.0.5"
